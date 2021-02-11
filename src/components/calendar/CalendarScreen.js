@@ -3,6 +3,8 @@ import 'moment/locale/es'
 import React, { useState } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import { useDispatch } from 'react-redux'
+import { uiOpenModal } from '../../accions/ui'
 import { messages } from '../../helpers/calendar-messages-es'
 import { Navbar } from '../ui/Navbar'
 import { CalendarEvent } from './CalendarEvent'
@@ -24,10 +26,13 @@ const events = [{
 }]
 
 export const CalendarScreen = () => {
+  const dispatch = useDispatch()
+
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month') // eslint-disable-line
 
   const onDoubleClick = (e) => {
-    console.log(e)
+    // console.log(e)
+    dispatch(uiOpenModal())
   }
 
   const onSelectEvent = (e) => {
