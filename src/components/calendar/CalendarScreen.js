@@ -1,10 +1,10 @@
 import moment from 'moment'
 import 'moment/locale/es'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { eventClearActiveEvent, eventSetActive } from '../../accions/events'
+import { eventClearActiveEvent, eventSetActive, eventStartLoading } from '../../accions/events'
 import { uiOpenModal } from '../../accions/ui'
 import { messages } from '../../helpers/calendar-messages-es'
 import { AddNewFab } from '../ui/AddNewFab'
@@ -21,9 +21,14 @@ export const CalendarScreen = () => {
   const dispatch = useDispatch()
 
   const { events, activeEvent } = useSelector(state => state.calendar)
+  const { uid } = useSelector(state => state.auth)
   // TODO: leer del store, los eventos
 
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month') // eslint-disable-line
+
+  useEffect(() => {
+    dispatch(eventStartLoading())
+  }, [dispatch])
 
   const onDoubleClick = (e) => {
     dispatch(uiOpenModal())
@@ -44,7 +49,7 @@ export const CalendarScreen = () => {
 
   const eventStyleGetter = (event, start, end, isSeleced) => {
     const style = {
-      backgroundColor: '#367CF7',
+      backgroundColor: (uid === event.user._id) ? '#367CF7' : '#465660',
       borderRadius: '0px',
       color: 'white',
       display: 'block',

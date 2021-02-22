@@ -4,7 +4,7 @@ import DateTimePicker from 'react-datetime-picker'
 import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../accions/events'
+import { eventClearActiveEvent, eventStartAddNew, eventStartUpdate } from '../../accions/events'
 import { uiCloseModal } from '../../accions/ui'
 
 const customStyles = {
@@ -97,17 +97,10 @@ export const CalendarModal = () => {
 
     if (activeEvent) {
       // TODO: realizar updated
-      dispatch(eventUpdated(formValues))
+      dispatch(eventStartUpdate(formValues))
     } else {
       // TODO: realizar grabacion
-      dispatch(eventAddNew({
-        ...formValues,
-        id: new Date().getTime(), // id temporal
-        user: {
-          _id: 123,
-          name: 'JL'
-        }
-      }))
+      dispatch(eventStartAddNew(formValues))
     }
 
     setTitleValid(true)

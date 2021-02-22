@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2'
 import { fetchConToken, fetchSinToken } from '../helpers/fetch'
 import { types } from '../types/types'
+import { eventLogout } from './events'
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
@@ -69,6 +70,7 @@ const login = (user) => ({
 export const startLogout = () => {
   return async (dispatch) => {
     localStorage.clear() // eslint-disable-line
+    dispatch(eventLogout())
     dispatch(logout())
   }
 }
