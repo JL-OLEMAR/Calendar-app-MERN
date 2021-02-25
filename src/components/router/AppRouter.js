@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom'
-import { startChecking } from '../../accions/auth'
+import { startChecking } from '../../actions/auth'
 import { LoginScreen } from '../auth/LoginScreen'
 import { CalendarScreen } from '../calendar/CalendarScreen'
 import { PrivateRoute } from './PrivateRoute'

@@ -11,7 +11,7 @@ export const types = {
   eventDeleted: '[event] Event deleted',
   eventLoaded: '[event] Events loaded',
 
-  authCheckingFinish: '[auth] Finish chekinj login state',
+  authCheckingFinish: '[auth] Finish checking login state',
   authStartLogin: '[auth] Start login',
   authLogin: '[auth] Login',
   authStartRegister: '[auth] Start Register',

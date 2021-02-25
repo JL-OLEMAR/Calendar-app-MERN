@@ -4,8 +4,8 @@ import DateTimePicker from 'react-datetime-picker'
 import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { eventClearActiveEvent, eventStartAddNew, eventStartUpdate } from '../../accions/events'
-import { uiCloseModal } from '../../accions/ui'
+import { eventClearActiveEvent, eventStartAddNew, eventStartUpdate } from '../../actions/events'
+import { uiCloseModal } from '../../actions/ui'
 
 const customStyles = {
   content: {
@@ -18,7 +18,9 @@ const customStyles = {
   }
 }
 
-Modal.setAppElement('#root')
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root')
+}
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours')
 const nowPlus1 = now.clone().add(1, 'hours')
@@ -115,6 +117,7 @@ export const CalendarModal = () => {
       closeTimeoutMS={200}
       className='modal'
       overlayClassName='modal-fondo'
+      ariaHideApp={!process.env.NODE_ENV === 'test'}
     >
       <h1> {(activeEvent) ? 'Editar evento' : 'Nuevo evento'} </h1>
       <hr />
