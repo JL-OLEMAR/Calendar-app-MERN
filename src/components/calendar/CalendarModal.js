@@ -66,7 +66,6 @@ export const CalendarModal = () => {
   }
 
   const closeModal = () => {
-    // TODO: cerrar el modal
     dispatch(uiCloseModal())
     dispatch(eventClearActiveEvent())
     setFormValues(initEvent)
@@ -107,10 +106,8 @@ export const CalendarModal = () => {
     }
 
     if (activeEvent) {
-      // TODO: realizar updated
       dispatch(eventStartUpdate(formValues))
     } else {
-      // TODO: realizar grabacion
       dispatch(eventStartAddNew(formValues))
     }
 

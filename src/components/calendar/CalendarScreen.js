@@ -28,7 +28,6 @@ export const CalendarScreen = () => {
 
   const { events, activeEvent } = useSelector((state) => state.calendar)
   const { uid } = useSelector((state) => state.auth)
-  // TODO: leer del store, los eventos
 
   const [lastView, setLastView] = useState(window.localStorage.getItem('lastView') || 'month')
 
