@@ -97,7 +97,7 @@ describe('Pruebas en las acciones Auth', () => {
     expect(localStorage.setItem).toHaveBeenCalledWith('token-init-date', expect.any(Number)) // eslint-disable-line
   })
 
-  test('startChecking correcto ', async () => {
+  test('startChecking correcto', async () => {
     fetchModule.fetchConToken = jest.fn(() => ({ // eslint-disable-line
       json () {
         return {

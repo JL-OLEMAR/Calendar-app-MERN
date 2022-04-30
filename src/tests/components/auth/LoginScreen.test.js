@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, test, expect */
+/* global jest, describe, test, expect, beforeEach */
 import '@testing-library/jest-dom'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
@@ -36,7 +36,7 @@ describe('Pruebas en <LoginScreen />', () => {
     jest.clearAllMocks()
   })
 
-  test('debe de mostrarse correctamente ', () => {
+  test('debe de mostrarse correctamente', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
