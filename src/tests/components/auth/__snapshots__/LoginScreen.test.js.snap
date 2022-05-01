@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pruebas en <LoginScreen /> debe de mostrarse correctamente  1`] = `
+exports[`Pruebas en <LoginScreen /> debe de mostrarse correctamente 1`] = `
 <div
   className="container login-container"
 >
