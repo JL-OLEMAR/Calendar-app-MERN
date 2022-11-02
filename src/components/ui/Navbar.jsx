@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Offline, Online } from 'react-detect-offline'
 
-import { startLogout } from '../../actions/auth'
+import { startLogout } from '../../actions/auth.js'
 
 export const Navbar = () => {
   const dispatch = useDispatch()

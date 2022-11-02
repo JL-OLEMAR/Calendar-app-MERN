@@ -3,12 +3,13 @@
 # dependencies
 package-log.json
 yarn.lock
+pnpm-lock.yaml
 /node_modules
 /dist
-/build
+
 /.pnp
 .pnp.js
-pnpm-lock.yaml
+
 *.log
 
 # testing
@@ -36,6 +37,5 @@ template/src/__tests__/__snapshots__/
 lerna-debug.log
 /.changelog
 .npm/
-yarn.lock
-package-lock.json
 .eslintcache
+

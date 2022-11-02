@@ -1,15 +1,14 @@
 import Swal from 'sweetalert2'
 
-import { fetchConToken } from '../helpers/fetch'
-import { prepareEvents } from '../helpers/prepareEvents'
-import { types } from '../types/types'
+import { fetchConToken, prepareEvents } from '../helpers'
+import { types } from '../types'
 
 export const eventStartAddNew = (event) => {
   return async (dispatch, getState) => {
     const { uid, name } = getState().auth
 
     try {
-      /*                           parametro,payload o data, method */
+      /* parametro ,payload o data, method */
       const resp = await fetchConToken('events', event, 'POST')
       const body = await resp.json()
 

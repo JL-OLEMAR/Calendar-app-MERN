@@ -9,15 +9,13 @@ import {
   eventClearActiveEvent,
   eventSetActive,
   eventStartLoading
-} from '../../actions/events'
-import { uiOpenModal } from '../../actions/ui'
-import { messages } from '../../helpers/calendar-messages-es'
-import { AddNewFab } from '../ui/AddNewFab'
-import { DeleteEventFab } from '../ui/DeleteEventFab'
-import { Navbar } from '../ui/Navbar'
+} from '../../actions/events.js'
+import { uiOpenModal } from '../../actions/ui.js'
+import { messages } from '../../helpers'
+import { AddNewFab, DeleteEventFab, Navbar } from '../ui'
 
-import { CalendarEvent } from './CalendarEvent'
-import { CalendarModal } from './CalendarModal'
+import { CalendarEvent } from './CalendarEvent.jsx'
+import { CalendarModal } from './CalendarModal.jsx'
 
 moment.locale('es')
 
@@ -29,7 +27,9 @@ export const CalendarScreen = () => {
   const { events, activeEvent } = useSelector((state) => state.calendar)
   const { uid } = useSelector((state) => state.auth)
 
-  const [lastView, setLastView] = useState(window.localStorage.getItem('lastView') || 'month')
+  const [lastView, setLastView] = useState(
+    window.localStorage.getItem('lastView') || 'month'
+  )
 
   useEffect(() => {
     dispatch(eventStartLoading())

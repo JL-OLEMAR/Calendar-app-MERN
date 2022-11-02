@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 
-import { uiOpenModal } from '../../actions/ui'
+import { uiOpenModal } from '../../actions/ui.js'
 
 export const AddNewFab = () => {
   const dispatch = useDispatch()

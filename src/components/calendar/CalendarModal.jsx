@@ -5,12 +5,12 @@ import DateTimePicker from 'react-datetime-picker'
 import Swal from 'sweetalert2'
 import moment from 'moment'
 
-import { uiCloseModal } from '../../actions/ui'
+import { uiCloseModal } from '../../actions/ui.js'
 import {
   eventClearActiveEvent,
   eventStartAddNew,
   eventStartUpdate
-} from '../../actions/events'
+} from '../../actions/events.js'
 
 const customStyles = {
   content: {
@@ -179,7 +179,9 @@ export const CalendarModal = () => {
             type='text'
             value={notes}
             onChange={handleInputChange}
-          ></textarea> {/* eslint-disable-line */}
+          >
+          </textarea>{' '}
+          {/* eslint-disable-line */}
           <small className='form-text text-muted' id='emailHelp'>
             Información adicional
           </small>

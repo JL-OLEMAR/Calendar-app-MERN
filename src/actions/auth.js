@@ -1,9 +1,9 @@
 import Swal from 'sweetalert2'
 
-import { fetchConToken, fetchSinToken } from '../helpers/fetch'
-import { types } from '../types/types'
+import { fetchConToken, fetchSinToken } from '../helpers'
+import { types } from '../types'
 
-import { eventLogout } from './events'
+import { eventLogout } from './events.js'
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {

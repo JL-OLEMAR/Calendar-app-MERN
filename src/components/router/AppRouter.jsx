@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { startChecking } from '../../actions/auth'
-import { LoginScreen } from '../auth/LoginScreen'
-import { CalendarScreen } from '../calendar/CalendarScreen'
+import { startChecking } from '../../actions/auth.js'
+import { LoginScreen } from '../auth'
+import { CalendarScreen } from '../calendar'
 
-import { PrivateRoute } from './PrivateRoute'
-import { PublicRoute } from './PublicRoute'
+import { PrivateRoute } from './PrivateRoute.jsx'
+import { PublicRoute } from './PublicRoute.jsx'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
