@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { addHours } from 'date-fns'
 import { Calendar as BigCalendar } from 'react-big-calendar'
+import { ToastContainer } from 'react-toastify'
+
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { getMessagesES, localizer } from '../../helpers'
 import { CalendarEvent, CalendarModal, Navbar } from '../'
@@ -33,11 +36,9 @@ export function Calendar () {
   }
 
   const onDoubleClick = (evt) => {
-    console.log({ DoubleClick: evt })
   }
 
   const onSelect = (evt) => {
-    console.log({ onSelect: evt })
   }
 
   const onViewChanged = (evt) => {
@@ -64,7 +65,10 @@ export function Calendar () {
         onView={onViewChanged}
         style={{ height: 'calc(100vh - 80px)' }}
       />
+
       <CalendarModal />
+
+      <ToastContainer />
     </>
   )
 }

@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { addHours } from 'date-fns'
+/* eslint-disable no-useless-return */
+import { useMemo, useState } from 'react'
+import { addHours, differenceInSeconds } from 'date-fns'
+import { toast } from 'react-toastify'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import Modal from 'react-modal'
 import es from 'date-fns/locale/es'
@@ -33,6 +35,15 @@ const INITIAL_STATE = {
 export function CalendarModal () {
   const [isOpenModal, setIsOpenModal] = useState(true)
   const [formValues, setFormValues] = useState(INITIAL_STATE)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const titleClass = useMemo(() => {
+    if (!formSubmitted) return ''
+
+    return (formValues.title.length > 0)
+      ? ''
+      : 'is-invalid'
+  }, [formValues.title, formSubmitted])
 
   const onInputChanged = ({ target }) => {
     setFormValues({
@@ -48,8 +59,26 @@ export function CalendarModal () {
   }
 
   const onCloseModal = () => {
-    console.log('close modal')
     setIsOpenModal(false)
+  }
+
+  const onSubmit = (evt) => {
+    evt.preventDefault()
+    setFormSubmitted(true)
+
+    const difference = differenceInSeconds(formValues.end, formValues.start)
+
+    if (isNaN(difference) || difference <= 0) {
+      toast.error('Wrong dates!', {
+        theme: 'colored',
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
+      return
+    }
+
+    if (formValues.title.length <= 0) return
+
+    console.log(formValues)
   }
 
   return (
@@ -64,7 +93,7 @@ export function CalendarModal () {
       <h1 className='px-2'>New event</h1>
       <hr />
 
-      <form className='container'>
+      <form className='container' onSubmit={onSubmit}>
         <div className='form-group mb-2'>
           <label>Start date and time</label>
           <DatePicker
@@ -97,7 +126,7 @@ export function CalendarModal () {
           <label>Title and notes</label>
           <input
             type='text'
-            className='form-control'
+            className={`form-control ${titleClass}`}
             placeholder='Event title'
             name='title'
             autoComplete='off'
@@ -121,8 +150,8 @@ export function CalendarModal () {
         </div>
 
         <button
-          type='submit'
           className='btn btn-outline-primary btn-block'
+          type='submit'
         >
           <i className='far fa-save' />
           <span className='ps-2'>Save</span>
