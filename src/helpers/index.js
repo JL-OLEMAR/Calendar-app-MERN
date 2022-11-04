@@ -1,3 +1,2 @@
-export * from './calendar-messages-es.js'
-export * from './fetch.js'
-export * from './prepareEvents.js'
+export { getMessagesES } from './getMessages.js'
+export { localizer } from './calendarLocalizer.js'
