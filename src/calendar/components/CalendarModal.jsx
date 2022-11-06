@@ -6,6 +6,7 @@ import { addHours, differenceInSeconds } from 'date-fns'
 import es from 'date-fns/locale/es'
 import { toast } from 'react-toastify'
 
+import { useUiStore } from '../../hooks'
 import 'react-datepicker/dist/react-datepicker.css'
 import './calendarModal.css'
 
@@ -34,9 +35,9 @@ const INITIAL_STATE = {
 }
 
 export function CalendarModal () {
-  const [isOpenModal, setIsOpenModal] = useState(true)
   const [formValues, setFormValues] = useState(INITIAL_STATE)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const { closeDateModal, isDateModalOpen } = useUiStore()
 
   const titleClass = useMemo(() => {
     if (!formSubmitted) return ''
@@ -61,7 +62,7 @@ export function CalendarModal () {
   }
 
   const onCloseModal = () => {
-    setIsOpenModal(false)
+    closeDateModal()
   }
 
   const onSubmit = (evt) => {
@@ -85,7 +86,7 @@ export function CalendarModal () {
 
   return (
     <Modal
-      isOpen={isOpenModal}
+      isOpen={isDateModalOpen}
       onRequestClose={onCloseModal}
       style={customStyles}
       className='modal'

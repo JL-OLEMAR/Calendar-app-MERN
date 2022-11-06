@@ -7,6 +7,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { getMessagesES, localizer } from '../../helpers'
+import { useUiStore } from '../../hooks'
 import { CalendarEvent, CalendarModal, Navbar } from '../'
 
 const events = [{
@@ -23,6 +24,7 @@ const events = [{
 
 export function Calendar () {
   const [lastView, setLastView] = useState(window.localStorage.getItem('lastView') || 'week')
+  const { openDateModal } = useUiStore()
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
@@ -36,6 +38,7 @@ export function Calendar () {
   }
 
   const onDoubleClick = (evt) => {
+    openDateModal()
   }
 
   const onSelect = (evt) => {
