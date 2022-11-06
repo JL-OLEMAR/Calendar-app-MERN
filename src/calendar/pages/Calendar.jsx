@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { addHours } from 'date-fns'
 import { Calendar as BigCalendar } from 'react-big-calendar'
 import { ToastContainer } from 'react-toastify'
 
@@ -7,24 +6,13 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { getMessagesES, localizer } from '../../helpers'
-import { useUiStore } from '../../hooks'
+import { useUiStore, useCalendarStore } from '../../hooks'
 import { CalendarEvent, CalendarModal, Navbar } from '../'
-
-const events = [{
-  title: 'Boss birthday',
-  notes: 'The cake must be bought',
-  start: new Date(),
-  end: addHours(new Date(), 2),
-  bgColor: '#fafafa',
-  user: {
-    _id: '123',
-    name: 'test1'
-  }
-}]
 
 export function Calendar () {
   const [lastView, setLastView] = useState(window.localStorage.getItem('lastView') || 'week')
   const { openDateModal } = useUiStore()
+  const { events, setActiveEvent } = useCalendarStore()
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
@@ -42,6 +30,7 @@ export function Calendar () {
   }
 
   const onSelect = (evt) => {
+    setActiveEvent(evt)
   }
 
   const onViewChanged = (evt) => {

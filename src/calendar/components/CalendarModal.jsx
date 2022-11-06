@@ -1,12 +1,12 @@
 /* eslint-disable no-useless-return */
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Modal from 'react-modal'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { addHours, differenceInSeconds } from 'date-fns'
 import es from 'date-fns/locale/es'
 import { toast } from 'react-toastify'
 
-import { useUiStore } from '../../hooks'
+import { useCalendarStore, useUiStore } from '../../hooks'
 import 'react-datepicker/dist/react-datepicker.css'
 import './calendarModal.css'
 
@@ -27,17 +27,24 @@ const customStyles = {
 // Show modal at page height
 Modal.setAppElement('#root')
 
+const currentDate = new Date()
 const INITIAL_STATE = {
-  title: 'test1',
-  notes: 'Bla bla',
-  start: new Date(),
-  end: addHours(new Date(), 2)
+  title: '',
+  notes: '',
+  start: currentDate,
+  end: addHours(currentDate, 2)
 }
 
 export function CalendarModal () {
   const [formValues, setFormValues] = useState(INITIAL_STATE)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { closeDateModal, isDateModalOpen } = useUiStore()
+  const { activeEvent } = useCalendarStore()
+
+  useEffect(() => {
+    if (activeEvent === null) return
+    setFormValues({ ...activeEvent })
+  }, [activeEvent])
 
   const titleClass = useMemo(() => {
     if (!formSubmitted) return ''
