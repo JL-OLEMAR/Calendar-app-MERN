@@ -1,14 +1,15 @@
 /* eslint-disable no-useless-return */
 import { useMemo, useState } from 'react'
-import { addHours, differenceInSeconds } from 'date-fns'
-import { toast } from 'react-toastify'
-import DatePicker, { registerLocale } from 'react-datepicker'
 import Modal from 'react-modal'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import { addHours, differenceInSeconds } from 'date-fns'
 import es from 'date-fns/locale/es'
+import { toast } from 'react-toastify'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import './calendarModal.css'
 
+// Change the language of the modal labels
 registerLocale('es', es)
 
 const customStyles = {
@@ -22,7 +23,7 @@ const customStyles = {
   }
 }
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+// Show modal at page height
 Modal.setAppElement('#root')
 
 const INITIAL_STATE = {
@@ -51,6 +52,7 @@ export function CalendarModal () {
       [target.name]: target.value
     })
   }
+
   const onDateChanged = (evt, changing) => {
     setFormValues({
       ...formValues,
