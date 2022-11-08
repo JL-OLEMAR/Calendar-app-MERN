@@ -37,7 +37,7 @@ const INITIAL_STATE = {
 
 export function CalendarModal () {
   const [formValues, setFormValues] = useState(INITIAL_STATE)
-  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const { closeDateModal, isDateModalOpen } = useUiStore()
   const { activeEvent } = useCalendarStore()
 
@@ -47,12 +47,12 @@ export function CalendarModal () {
   }, [activeEvent])
 
   const titleClass = useMemo(() => {
-    if (!formSubmitted) return ''
+    if (!isFormSubmitted) return ''
 
     return (formValues.title.length > 0)
       ? ''
       : 'is-invalid'
-  }, [formValues.title, formSubmitted])
+  }, [formValues.title, isFormSubmitted])
 
   const onInputChanged = ({ target }) => {
     setFormValues({
@@ -74,7 +74,7 @@ export function CalendarModal () {
 
   const onSubmit = (evt) => {
     evt.preventDefault()
-    setFormSubmitted(true)
+    setIsFormSubmitted(true)
 
     const difference = differenceInSeconds(formValues.end, formValues.start)
 
