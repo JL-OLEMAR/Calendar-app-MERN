@@ -60,7 +60,7 @@ export function Calendar () {
 
       <CalendarModal />
 
-      <ToastContainer />
+      <ToastContainer theme='colored' />
     </>
   )
 }

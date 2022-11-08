@@ -4,9 +4,9 @@ import Modal from 'react-modal'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { addHours, differenceInSeconds } from 'date-fns'
 import es from 'date-fns/locale/es'
-import { toast } from 'react-toastify'
 
 import { useCalendarStore, useUiStore } from '../../hooks'
+import { setErrorToast } from '../../helpers'
 import 'react-datepicker/dist/react-datepicker.css'
 import './calendarModal.css'
 
@@ -79,10 +79,7 @@ export function CalendarModal () {
     const difference = differenceInSeconds(formValues.end, formValues.start)
 
     if (isNaN(difference) || difference <= 0) {
-      toast.error('Wrong dates!', {
-        theme: 'colored',
-        position: toast.POSITION.BOTTOM_RIGHT
-      })
+      setErrorToast('Wrong dates!')
       return
     }
 
