@@ -1,0 +1,20 @@
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 50%;
+  z-index: 9
+}
+
+.fab-danger {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  height: 64px;
+  width: 64px;
+  font-size: 20px;
+  border-radius: 50%;
+  z-index: 9
+}

@@ -59,20 +59,3 @@
 .react-datetime-picker__wrapper {
   border: 0px solid gray !important;
 }
-
-/* FABS */
-.fab {
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-  padding: 25px;
-  font-size: 30px;
-  border-radius: 100%;
-}
-
-.fab-danger {
-  position: fixed;
-  bottom: 25px;
-  left: 25px;
-  padding: 10px;
-}

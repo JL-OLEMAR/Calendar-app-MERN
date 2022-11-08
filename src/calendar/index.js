@@ -1,4 +1,6 @@
 export { Calendar } from './pages/Calendar.jsx'
 export { CalendarEvent } from './components/CalendarEvent.jsx'
 export { CalendarModal } from './components/CalendarModal.jsx'
+export { FabAddNew } from './components/FabAddNew.jsx'
+export { FabDelete } from './components/FabDelete.jsx'
 export { Navbar } from './components/Navbar.jsx'
