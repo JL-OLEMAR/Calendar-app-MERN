@@ -1,7 +1,7 @@
 import { useCalendarStore } from '../../hooks'
 import './fabAddNew.css'
 
-export function FabDelete () {
+export function FabDelete() {
   const { hasEventSelected, startDeleteEvent } = useCalendarStore()
 
   const handleDeleteEvt = () => {

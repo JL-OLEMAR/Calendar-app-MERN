@@ -7,7 +7,8 @@ export const store = configureStore({
     calendar: calendarSlice.reducer
   },
   // So that it doesn't check, if the dates are serialized.
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false
-  })
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 })

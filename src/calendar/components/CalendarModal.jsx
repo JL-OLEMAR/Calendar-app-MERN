@@ -35,7 +35,7 @@ const INITIAL_STATE = {
   end: addHours(currentDate, 2)
 }
 
-export function CalendarModal () {
+export function CalendarModal() {
   const [formValues, setFormValues] = useState(INITIAL_STATE)
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const { closeDateModal, isDateModalOpen } = useUiStore()
@@ -49,9 +49,7 @@ export function CalendarModal () {
   const titleClass = useMemo(() => {
     if (!isFormSubmitted) return ''
 
-    return (formValues.title.length > 0)
-      ? ''
-      : 'is-invalid'
+    return formValues.title.length > 0 ? '' : 'is-invalid'
   }, [formValues.title, isFormSubmitted])
 
   const onInputChanged = ({ target }) => {
@@ -144,7 +142,9 @@ export function CalendarModal () {
             value={formValues.title}
             onChange={onInputChanged}
           />
-          <small id='emailHelp' className='form-text text-muted'>Short description</small>
+          <small id='emailHelp' className='form-text text-muted'>
+            Short description
+          </small>
         </div>
 
         <div className='form-group mb-2'>
@@ -157,13 +157,12 @@ export function CalendarModal () {
             value={formValues.notes}
             onChange={onInputChanged}
           />
-          <small id='emailHelp' className='form-text text-muted'>Additional information</small>
+          <small id='emailHelp' className='form-text text-muted'>
+            Additional information
+          </small>
         </div>
 
-        <button
-          className='btn btn-outline-primary btn-block'
-          type='submit'
-        >
+        <button className='btn btn-outline-primary btn-block' type='submit'>
           <i className='far fa-save' />
           <span className='ps-2'>Save</span>
         </button>

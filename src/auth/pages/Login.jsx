@@ -1,6 +1,6 @@
 import './login.css'
 
-export function Login () {
+export function Login() {
   return (
     <div className='container login-container'>
       <div className='row'>
@@ -8,11 +8,7 @@ export function Login () {
           <h3>Sign In</h3>
           <form>
             <div className='form-group mb-2'>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='Email'
-              />
+              <input type='text' className='form-control' placeholder='Email' />
             </div>
             <div className='form-group mb-2'>
               <input
@@ -31,11 +27,7 @@ export function Login () {
           <h3>Register</h3>
           <form>
             <div className='form-group mb-2'>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='Name'
-              />
+              <input type='text' className='form-control' placeholder='Name' />
             </div>
             <div className='form-group mb-2'>
               <input
@@ -61,7 +53,11 @@ export function Login () {
             </div>
 
             <div className='d-grid gap-2'>
-              <input type='submit' className='btnSubmit' value='Create account' />
+              <input
+                type='submit'
+                className='btnSubmit'
+                value='Create account'
+              />
             </div>
           </form>
         </div>

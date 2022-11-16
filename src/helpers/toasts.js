@@ -10,10 +10,10 @@ const toastOptions = {
   progress: undefined
 }
 
-export function setSuccessToast (message) {
+export function setSuccessToast(message) {
   toast.success(message, toastOptions)
 }
 
-export function setErrorToast (message) {
+export function setErrorToast(message) {
   toast.error(message, toastOptions)
 }

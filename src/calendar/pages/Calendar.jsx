@@ -8,8 +8,10 @@ import { getMessagesES, localizer } from '../../helpers'
 import { useUiStore, useCalendarStore } from '../../hooks'
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from '../'
 
-export function Calendar () {
-  const [lastView, setLastView] = useState(window.localStorage.getItem('lastView') || 'week')
+export function Calendar() {
+  const [lastView, setLastView] = useState(
+    window.localStorage.getItem('lastView') || 'week'
+  )
   const { openDateModal } = useUiStore()
   const { events, setActiveEvent } = useCalendarStore()
 
