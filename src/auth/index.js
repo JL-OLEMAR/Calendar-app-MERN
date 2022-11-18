@@ -1,1 +1,1 @@
-export { Login } from './pages/Login.jsx'
+export { Auth } from './pages/Auth.jsx'

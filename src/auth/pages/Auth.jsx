@@ -1,6 +1,6 @@
-import './login.css'
+import './auth.css'
 
-export function Login() {
+export function Auth() {
   return (
     <div className='container login-container'>
       <div className='row'>
