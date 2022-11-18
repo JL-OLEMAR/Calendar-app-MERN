@@ -4,7 +4,7 @@ import {
   onDeleteEvent,
   onSetActiveEvent,
   onUpdateEvent
-} from '../store'
+} from '../store/calendar'
 
 export function useCalendarStore() {
   const { activeEvent, events } = useSelector((state) => state.calendar)
