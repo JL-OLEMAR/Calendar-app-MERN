@@ -9,6 +9,13 @@ const INITIAL_STATE_LOGIN = {
   lPassword: ''
 }
 
+const INITIAL_STATE_REGISTER = {
+  rName: '',
+  rEmail: '',
+  rPassword: '',
+  rPassword2: ''
+}
+
 export function Auth() {
   const {
     lEmail,
@@ -16,17 +23,33 @@ export function Auth() {
     onInputChange: onLoginInputChange
   } = useForm(INITIAL_STATE_LOGIN)
 
-  const { errorMessage, startLogin } = useAuthStore()
+  const {
+    rName,
+    rEmail,
+    rPassword,
+    rPassword2,
+    onInputChange: onRegisterInputChange
+  } = useForm(INITIAL_STATE_REGISTER)
+
+  const { errorMessage, startLogin, startRegister } = useAuthStore()
 
   useEffect(() => {
-    if (errorMessage !== undefined) {
-      setErrorToast('Authentication failed!')
-    }
+    errorMessage && setErrorToast(errorMessage)
   }, [errorMessage])
 
   const loginSubmit = (evt) => {
     evt.preventDefault()
     startLogin({ email: lEmail, password: lPassword })
+  }
+
+  const registerSubmit = (evt) => {
+    evt.preventDefault()
+
+    if (rPassword !== rPassword2) {
+      setErrorToast("Passwords aren't the same!")
+      return
+    }
+    startRegister({ name: rName, email: rEmail, password: rPassword })
   }
 
   return (
@@ -63,15 +86,25 @@ export function Auth() {
 
         <div className='col-md-6 login-form-2'>
           <h3>Register</h3>
-          <form>
+          <form onSubmit={registerSubmit}>
             <div className='form-group mb-2'>
-              <input type='text' className='form-control' placeholder='Name' />
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Name'
+                name='rName'
+                value={rName}
+                onChange={onRegisterInputChange}
+              />
             </div>
             <div className='form-group mb-2'>
               <input
                 type='email'
                 className='form-control'
                 placeholder='Email'
+                name='rEmail'
+                value={rEmail}
+                onChange={onRegisterInputChange}
               />
             </div>
             <div className='form-group mb-2'>
@@ -79,6 +112,9 @@ export function Auth() {
                 type='password'
                 className='form-control'
                 placeholder='Password'
+                name='rPassword'
+                value={rPassword}
+                onChange={onRegisterInputChange}
               />
             </div>
 
@@ -87,6 +123,9 @@ export function Auth() {
                 type='password'
                 className='form-control'
                 placeholder='Repeat your password'
+                name='rPassword2'
+                value={rPassword2}
+                onChange={onRegisterInputChange}
               />
             </div>
 
