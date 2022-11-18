@@ -12,9 +12,11 @@ export const useAuthStore = () => {
 
     try {
       const { data } = await calendarApi.post('/auth', { email, password })
-      window.localStorage.setItem('token', data.token)
+      const { name, token, uid } = data
+
+      window.localStorage.setItem('token', token)
       window.localStorage.setItem('token-init-date', new Date().getTime())
-      dispatch(onLogin({ name: data.name, uid: data.uid }))
+      dispatch(onLogin({ name, uid }))
     } catch (error) {
       dispatch(onLogout('Incorrect credentials'))
       setTimeout(() => {
@@ -32,11 +34,11 @@ export const useAuthStore = () => {
         email,
         password
       })
+      const { name: nameData, token, uid } = data
 
-      window.localStorage.setItem('token', data.token)
+      window.localStorage.setItem('token', token)
       window.localStorage.setItem('token-init-date', new Date().getTime())
-
-      dispatch(onLogin({ name: data.name, uid: data.uid }))
+      dispatch(onLogin({ name: nameData, uid }))
     } catch (error) {
       dispatch(onLogout(error.response.data?.msg || ''))
       setTimeout(() => {
@@ -45,10 +47,28 @@ export const useAuthStore = () => {
     }
   }
 
+  const checkAuthToken = async () => {
+    const token = window.localStorage.getItem('token') || ''
+    token || dispatch(onLogout())
+
+    try {
+      const { data } = await calendarApi.get('/auth/renew')
+      const { name, token, uid } = data
+
+      window.localStorage.setItem('token', token)
+      window.localStorage.setItem('token-init-date', new Date().getTime())
+      dispatch(onLogin({ name, uid }))
+    } catch (error) {
+      window.localStorage.clear()
+      dispatch(onLogout())
+    }
+  }
+
   return {
     errorMessage,
     status,
     user,
+    checkAuthToken,
     startLogin,
     startRegister
   }
