@@ -1,8 +1,6 @@
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useState } from 'react'
 import { Calendar as BigCalendar } from 'react-big-calendar'
-import { ToastContainer } from 'react-toastify'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
-import 'react-toastify/dist/ReactToastify.css'
 
 import { getMessagesES, localizer } from '../../helpers'
 import { useUiStore, useCalendarStore } from '../../hooks'
@@ -62,8 +60,6 @@ export function Calendar() {
       <CalendarModal />
       <FabAddNew />
       <FabDelete />
-
-      <ToastContainer theme='colored' />
     </>
   )
 }

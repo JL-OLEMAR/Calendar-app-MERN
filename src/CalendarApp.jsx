@@ -1,3 +1,5 @@
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
@@ -9,6 +11,7 @@ export function CalendarApp() {
     <Provider store={store}>
       <BrowserRouter>
         <AppRouter />
+        <ToastContainer theme='colored' />
       </BrowserRouter>
     </Provider>
   )
