@@ -1,3 +1,4 @@
+export { convertEventsToDateEvents } from './convertEventsToDateEvents.js'
 export { getEnvVariables } from './getEnvVariables.js'
 export { getMessagesES } from './getMessages.js'
 export { localizer } from './calendarLocalizer.js'

@@ -4,9 +4,11 @@ import { calendarApi } from '../api'
 import {
   onAddNewEvent,
   onDeleteEvent,
+  onLoadEvents,
   onSetActiveEvent,
   onUpdateEvent
 } from '../store/calendar'
+import { convertEventsToDateEvents } from '../helpers'
 
 export function useCalendarStore() {
   const { user } = useSelector((state) => state.auth)
@@ -32,12 +34,24 @@ export function useCalendarStore() {
     dispatch(onDeleteEvent())
   }
 
+  const startLoadingEvents = async () => {
+    try {
+      const { data } = await calendarApi.get('/events')
+      const events = convertEventsToDateEvents(data.events)
+      dispatch(onLoadEvents(events))
+    } catch (error) {
+      console.log('Error loading events')
+      console.log(error)
+    }
+  }
+
   return {
     activeEvent,
     events,
     hasEventSelected: !!activeEvent,
     setActiveEvent,
     startDeleteEvent,
+    startLoadingEvents,
     startSavingEvent
   }
 }

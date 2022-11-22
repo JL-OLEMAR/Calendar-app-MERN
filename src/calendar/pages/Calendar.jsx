@@ -1,5 +1,5 @@
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Calendar as BigCalendar } from 'react-big-calendar'
 
 import { getMessagesES, localizer } from '../../helpers'
@@ -11,7 +11,11 @@ export function Calendar() {
     window.localStorage.getItem('lastView') || 'week'
   )
   const { openDateModal } = useUiStore()
-  const { events, setActiveEvent } = useCalendarStore()
+  const { events, setActiveEvent, startLoadingEvents } = useCalendarStore()
+
+  useEffect(() => {
+    startLoadingEvents()
+  }, [])
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
