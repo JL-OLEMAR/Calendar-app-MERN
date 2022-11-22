@@ -8,7 +8,7 @@ import {
   onSetActiveEvent,
   onUpdateEvent
 } from '../store/calendar'
-import { convertEventsToDateEvents } from '../helpers'
+import { convertEventsToDateEvents, setErrorToast } from '../helpers'
 
 export function useCalendarStore() {
   const { user } = useSelector((state) => state.auth)
@@ -20,13 +20,19 @@ export function useCalendarStore() {
   }
 
   const startSavingEvent = async (calendarEvt) => {
-    if (calendarEvt._id) {
+    try {
       // Updating
-      dispatch(onUpdateEvent({ ...calendarEvt }))
-    } else {
+      if (calendarEvt.id) {
+        await calendarApi.put(`/events/${calendarEvt.id}`, calendarEvt)
+        dispatch(onUpdateEvent({ ...calendarEvt, user }))
+        return
+      }
+
       // Creating
       const { data } = await calendarApi.post('/events', calendarEvt)
       dispatch(onAddNewEvent({ ...calendarEvt, id: data.event.id, user }))
+    } catch (error) {
+      setErrorToast(error.response.data.msg)
     }
   }
 
