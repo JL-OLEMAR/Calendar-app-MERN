@@ -10,7 +10,7 @@ export function AppRouter() {
 
   useEffect(() => {
     checkAuthToken()
-  }, [])
+  }, [status])
 
   status === 'checking' && <h3>Loading...</h3>
 
