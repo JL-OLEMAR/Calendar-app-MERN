@@ -1,0 +1,22 @@
+{
+  "env": {
+    "jest/globals": true
+  },
+  "extends": [
+    "plugin:react-hooks/recommended",
+    "./node_modules/standard/eslintrc.json"
+  ],
+  "rules": {
+    "space-before-function-paren": [
+      "warn",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "multiline-ternary": ["warn", "never"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
