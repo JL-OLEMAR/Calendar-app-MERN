@@ -8,7 +8,11 @@ import {
   onSetActiveEvent,
   onUpdateEvent
 } from '../store/calendar'
-import { convertEventsToDateEvents, setErrorToast } from '../helpers'
+import {
+  convertEventsToDateEvents,
+  setErrorToast,
+  setSuccessToast
+} from '../helpers'
 
 export function useCalendarStore() {
   const { user } = useSelector((state) => state.auth)
@@ -36,8 +40,14 @@ export function useCalendarStore() {
     }
   }
 
-  const startDeleteEvent = () => {
-    dispatch(onDeleteEvent())
+  const startDeleteEvent = async () => {
+    try {
+      await calendarApi.delete(`/events/${activeEvent.id}`)
+      dispatch(onDeleteEvent())
+      setSuccessToast('Deleted event.')
+    } catch (error) {
+      setErrorToast(error.response.data.msg)
+    }
   }
 
   const startLoadingEvents = async () => {
