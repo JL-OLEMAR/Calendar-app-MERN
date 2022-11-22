@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-expressions */
 export const getEnvVariables = () => {
-  import.meta.env
+  // import.meta.env
 
   return {
-    ...import.meta.env
+    // ...import.meta.env
+    VITE_APP_API_URL: import.meta.env.VITE_APP_API_URL
   }
 }

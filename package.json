@@ -8,7 +8,7 @@
     "url": "https://github.com/JL-OLEMAR/Calendar-app-MERN/"
   },
   "bugs": "https://github.com/JL-OLEMAR/Calendar-app-MERN/issues",
-  "homepage": "https://calendar-ole.netlify.app/",
+  "homepage": "https://Calendar-Ole.up.railway.app/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
