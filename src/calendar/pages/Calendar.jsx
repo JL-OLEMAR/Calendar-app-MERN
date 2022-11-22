@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react'
 import { Calendar as BigCalendar } from 'react-big-calendar'
 
 import { getMessagesES, localizer } from '../../helpers'
-import { useUiStore, useCalendarStore } from '../../hooks'
+import { useUiStore, useCalendarStore, useAuthStore } from '../../hooks'
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from '../'
 
 export function Calendar() {
   const [lastView, setLastView] = useState(
     window.localStorage.getItem('lastView') || 'week'
   )
+  const { user } = useAuthStore()
   const { openDateModal } = useUiStore()
   const { events, setActiveEvent, startLoadingEvents } = useCalendarStore()
 
@@ -18,10 +19,12 @@ export function Calendar() {
   }, [])
 
   const eventStyleGetter = (event, start, end, isSelected) => {
+    const isMyEvent = user.uid === event.user._id || user.uid === event.user.uid
+
     const style = {
       borderRadius: 0,
       opacity: 0.8,
-      backgroundColor: '#347CF7',
+      backgroundColor: isMyEvent ? '#347CF7' : '#465660',
       color: 'white'
     }
 
