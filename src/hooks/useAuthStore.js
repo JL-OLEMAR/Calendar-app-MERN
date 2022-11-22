@@ -48,8 +48,8 @@ export const useAuthStore = () => {
   }
 
   const checkAuthToken = async () => {
-    const token = window.localStorage.getItem('token') || ''
-    token || dispatch(onLogout())
+    const token = window.localStorage.getItem('token')
+    if (!token) return dispatch(onLogout())
 
     try {
       const { data } = await calendarApi.get('/auth/renew')
