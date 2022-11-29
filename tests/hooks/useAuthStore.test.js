@@ -48,24 +48,22 @@ describe('Tests in the useAuthStore hook', () => {
   })
 
   test('startLogin should login correctly', async () => {
-    // Here mock the initialState 👇
+    const { name, uid, email, password } = testUserCredentials
     const mockStore = getMockStore({ ...notAuthenticatedState })
-
     const { result } = renderHook(() => useAuthStore(), {
-      // 👇 Here wrapper the hook for provider the mocked store)
       wrapper: ({ children }) => (
         <Provider store={mockStore}>{children}</Provider>
       )
     })
 
     await act(async () => {
-      await result.current.startLogin(testUserCredentials)
+      await result.current.startLogin({ email, password })
     })
 
     expect(result.current).toEqual({
       errorMessage: undefined,
       status: 'authenticated',
-      user: { name: 'TestUser', uid: '637d3a415be35345a426b50d' },
+      user: { name, uid },
       checkAuthToken: expect.any(Function),
       startLogin: expect.any(Function),
       startLogout: expect.any(Function),
@@ -79,11 +77,9 @@ describe('Tests in the useAuthStore hook', () => {
   })
 
   test('startLogin should fail authentication', async () => {
-    // Here mock the initialState 👇
     const mockStore = getMockStore({ ...notAuthenticatedState })
 
     const { result } = renderHook(() => useAuthStore(), {
-      // 👇 Here wrapper the hook for provider the mocked store)
       wrapper: ({ children }) => (
         <Provider store={mockStore}>{children}</Provider>
       )
@@ -192,7 +188,9 @@ describe('Tests in the useAuthStore hook', () => {
   })
 
   test('checkAuthToken should authenticate the user if there is a token', async () => {
+    const { name, uid } = testUserCredentials
     const { data } = await calendarApi.post('/auth', testUserCredentials)
+
     globalThis.localStorage.setItem('token', data.token)
 
     const mockStore = getMockStore({ ...initialAuthState })
@@ -211,7 +209,7 @@ describe('Tests in the useAuthStore hook', () => {
     expect({ errorMessage, status, user }).toEqual({
       errorMessage: undefined,
       status: 'authenticated',
-      user: { name: 'TestUser', uid: '637d3a415be35345a426b50d' }
+      user: { name, uid }
     })
   })
 })
