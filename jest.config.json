@@ -1,5 +1,8 @@
 {
   "testEnvironment": "jest-environment-jsdom",
   "setupFiles": ["./jest.setup.js"],
-  "transformIgnorePatterns": []
+  "transformIgnorePatterns": [],
+  "moduleNameMapper": {
+    "\\.css$": "<rootDir>/tests/mocks/styleMock.json"
+  }
 }
