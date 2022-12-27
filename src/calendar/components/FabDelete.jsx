@@ -1,7 +1,7 @@
 import { useCalendarStore } from '../../hooks'
 import './fabAddNew.css'
 
-export function FabDelete() {
+export function FabDelete () {
   const { hasEventSelected, startDeleteEvent } = useCalendarStore()
 
   const handleDeleteEvt = () => {
@@ -10,6 +10,7 @@ export function FabDelete() {
 
   return (
     <button
+      aria-label='btn-delete'
       className='btn btn-danger fab-danger'
       style={{ display: hasEventSelected ? '' : 'none' }}
       type='button'
