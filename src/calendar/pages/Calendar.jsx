@@ -6,7 +6,7 @@ import { getMessagesES, localizer } from '../../helpers'
 import { useUiStore, useCalendarStore, useAuthStore } from '../../hooks'
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from '../'
 
-export function Calendar() {
+export function Calendar () {
   const [lastView, setLastView] = useState(
     window.localStorage.getItem('lastView') || 'week'
   )

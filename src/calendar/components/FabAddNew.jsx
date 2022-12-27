@@ -2,7 +2,7 @@ import { addHours } from 'date-fns'
 import { useCalendarStore, useUiStore } from '../../hooks'
 import './fabAddNew.css'
 
-export function FabAddNew() {
+export function FabAddNew () {
   const { openDateModal } = useUiStore()
   const { setActiveEvent } = useCalendarStore()
 

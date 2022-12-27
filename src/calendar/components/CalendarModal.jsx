@@ -35,7 +35,7 @@ const INITIAL_STATE = {
   end: addHours(currentDate, 2)
 }
 
-export function CalendarModal() {
+export function CalendarModal () {
   const [formValues, setFormValues] = useState(INITIAL_STATE)
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const { closeDateModal, isDateModalOpen } = useUiStore()

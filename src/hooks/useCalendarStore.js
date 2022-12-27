@@ -14,7 +14,7 @@ import {
   setSuccessToast
 } from '../helpers'
 
-export function useCalendarStore() {
+export function useCalendarStore () {
   const { user } = useSelector((state) => state.auth)
   const { activeEvent, events } = useSelector((state) => state.calendar)
   const dispatch = useDispatch()

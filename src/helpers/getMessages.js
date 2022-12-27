@@ -1,4 +1,4 @@
-export function getMessagesES() {
+export function getMessagesES () {
   return {
     allDay: 'Todo el día',
     previous: '<',

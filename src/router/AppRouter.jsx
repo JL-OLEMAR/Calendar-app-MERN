@@ -5,7 +5,7 @@ import { useAuthStore } from '../hooks'
 import { Auth } from '../auth'
 import { Calendar } from '../calendar'
 
-export function AppRouter() {
+export function AppRouter () {
   const { checkAuthToken, status } = useAuthStore()
 
   useEffect(() => {
@@ -16,17 +16,19 @@ export function AppRouter() {
 
   return (
     <Routes>
-      {status === 'not-authenticated' ? (
-        <>
-          <Route path='/auth/*' element={<Auth />} />
-          <Route path='/*' element={<Navigate to='/auth/login' />} />
-        </>
-      ) : (
-        <>
-          <Route path='/' element={<Calendar />} />
-          <Route path='/*' element={<Navigate to='/' />} />
-        </>
-      )}
+      {status === 'not-authenticated'
+        ? (
+          <>
+            <Route path='/auth/*' element={<Auth />} />
+            <Route path='/*' element={<Navigate to='/auth/login' />} />
+          </>
+          )
+        : (
+          <>
+            <Route path='/' element={<Calendar />} />
+            <Route path='/*' element={<Navigate to='/' />} />
+          </>
+          )}
     </Routes>
   )
 }

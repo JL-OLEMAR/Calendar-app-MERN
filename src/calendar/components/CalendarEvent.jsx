@@ -1,4 +1,4 @@
-export function CalendarEvent({ event }) {
+export function CalendarEvent ({ event }) {
   const { title, user } = event
 
   return (

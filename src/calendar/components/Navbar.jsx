@@ -1,6 +1,6 @@
 import { useAuthStore } from '../../hooks'
 
-export function Navbar() {
+export function Navbar () {
   const { startLogout, user } = useAuthStore()
 
   return (

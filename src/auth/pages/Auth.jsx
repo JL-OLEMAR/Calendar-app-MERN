@@ -16,7 +16,7 @@ const INITIAL_STATE_REGISTER = {
   rPassword2: ''
 }
 
-export function Auth() {
+export function Auth () {
   const {
     lEmail,
     lPassword,
