@@ -6,7 +6,7 @@ import { addHours, differenceInSeconds } from 'date-fns'
 import es from 'date-fns/locale/es'
 
 import { useCalendarStore, useUiStore } from '../../hooks'
-import { setErrorToast } from '../../helpers'
+import { getEnvVariables, setErrorToast } from '../../helpers'
 import 'react-datepicker/dist/react-datepicker.css'
 import './calendarModal.css'
 
@@ -24,8 +24,10 @@ const customStyles = {
   }
 }
 
-// Show modal at page height
-Modal.setAppElement('#root')
+if (getEnvVariables().VITE_APP_NODE !== 'test') {
+  // Show modal at page height
+  Modal.setAppElement('#root')
+}
 
 const currentDate = new Date()
 const INITIAL_STATE = {
