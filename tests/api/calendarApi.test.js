@@ -1,3 +1,4 @@
+import { expect, describe, test } from '@jest/globals'
 import calendarApi from '../../src/api/calendarApi.js'
 
 describe('Tests in calendarApi', () => {
@@ -7,7 +8,7 @@ describe('Tests in calendarApi', () => {
 
   test('should have the x-token in the header of all requests', async () => {
     const token = 'ABC-123-XYZ'
-    localStorage.setItem('token', token)
+    globalThis.localStorage.setItem('token', token)
     const res = await calendarApi.get('/auth')
 
     expect(res.config.headers['x-token']).toBe(token)

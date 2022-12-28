@@ -10,9 +10,11 @@ export function AppRouter () {
 
   useEffect(() => {
     checkAuthToken()
-  }, [status])
+  }, [])
 
-  status === 'checking' && <h3>Loading...</h3>
+  if (status === 'checking') {
+    return <h3>Loading...</h3>
+  }
 
   return (
     <Routes>
